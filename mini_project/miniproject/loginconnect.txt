@@ -1,0 +1,23 @@
+app.post('/login',function(req,res){
+	var uid=req.body.email_Id;
+	var pwd=req.body.Password;
+	var query="select * from customer where email_Id=?";
+con.query(query,[uid],function(err,result){
+	if(!err)
+{
+	if(result.length>0)
+{
+	if(result[0].email_Id==uid&&result[0].Password==pwd)
+{
+	res.send("success");
+}
+
+	else
+	res.send("login failed");
+	
+}
+}
+})
+	
+	
+});
